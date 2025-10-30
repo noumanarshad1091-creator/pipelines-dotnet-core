@@ -1,0 +1,23 @@
+trigger:
+- main
+
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+  - job: BuildJob
+    displayName: 'Compile and Build'
+    steps:
+    - script: echo "Building the project..."
+      displayName: 'Run build script'
+
+- stage: Deploy
+  displayName: 'Deploy Stage'
+  dependsOn: Build
+  jobs:
+  - job: DeployJob
+    displayName: 'Deploy to Environment'
+    steps:
+    - script: echo "Deploying the project..."
+      displayName: 'Run deploy script'
+
